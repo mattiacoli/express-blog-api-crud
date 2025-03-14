@@ -1,9 +1,15 @@
-const { log } = require('console')
+
 const posts = require('../data/posts')
 
 // index
 function index(req, res) {
-  res.json(posts)
+  let filterPosts = posts
+  const tag = req.query.tag
+  if(tag){
+    filterPosts = posts.filter(post => post.tags.includes(tag))
+  }
+
+  res.json(filterPosts)
 }
 // show
 function show(req, res) {
