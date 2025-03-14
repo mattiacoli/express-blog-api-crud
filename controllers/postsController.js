@@ -42,9 +42,6 @@ function destroy(req, res) {
 
   const postSlug = req.params.slug
   const post = posts.find(post => post.slug === postSlug)
-  if(!post){
-    res.send('post not found')
-  }
 
   posts.splice(posts.indexOf(post), 1)
   console.log(posts);
