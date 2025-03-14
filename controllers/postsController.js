@@ -16,7 +16,7 @@ function show(req, res) {
   const postSlug = req.params.slug
   const post = posts.find(post => post.slug === postSlug)
   if(!post){
-    res.status(404).json({
+    return res.status(404).json({
       error : "error 404",
       message : "post not found"
     })
