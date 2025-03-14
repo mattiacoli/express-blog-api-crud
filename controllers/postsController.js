@@ -49,7 +49,7 @@ function destroy(req, res) {
   posts.splice(posts.indexOf(post), 1)
   console.log(posts);
 
-  res.send(`deleted post with slug ${postSlug}`)
+  res.sendStatus(204)
 
 }
 
