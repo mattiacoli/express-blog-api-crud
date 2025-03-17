@@ -25,7 +25,22 @@ function show(req, res) {
 }
 // store
 function store(req, res) {
-  res.send('add new post')
+
+  // create new object
+  const newPost = {
+    title : req.body.title,
+    slug : req.body.slug,
+    content : req.body.content,
+    image : req.body.image,
+    tags : req.body.tags
+  }
+  // save new object in array
+  posts.push(newPost)
+  // log the array with the new post
+  console.log(posts);
+  // return new post on postman
+  res.status(201).json(newPost)
+
 }
 // update
 function update(req, res) {

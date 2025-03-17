@@ -4,6 +4,10 @@ const port = 3000
 
 const postsRouter = require('./routers/post_routers')
 
+// middleware for body-parser
+app.use(express.json())
+
+// post endpoint
 app.use('/posts', postsRouter)
 
 app.listen(port,()=>{
