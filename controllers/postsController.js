@@ -5,7 +5,7 @@ const posts = require('../data/posts')
 function index(req, res) {
   let filterPosts = posts
   const tag = req.query.tag
-  if(tag){
+  if (tag) {
     filterPosts = posts.filter(post => post.tags.includes(tag))
   }
 
@@ -15,10 +15,10 @@ function index(req, res) {
 function show(req, res) {
   const postSlug = req.params.slug
   const post = posts.find(post => post.slug === postSlug)
-  if(!post){
+  if (!post) {
     return res.status(404).json({
-      error : "error 404",
-      message : "post not found"
+      error: "error 404",
+      message: "post not found"
     })
   }
   res.json(post)
@@ -28,11 +28,11 @@ function store(req, res) {
 
   // create new object
   const newPost = {
-    title : req.body.title,
-    slug : req.body.slug,
-    content : req.body.content,
-    image : req.body.image,
-    tags : req.body.tags
+    title: req.body.title,
+    slug: req.body.slug,
+    content: req.body.content,
+    image: req.body.image,
+    tags: req.body.tags
   }
   // save new object in array
   posts.push(newPost)
@@ -48,10 +48,10 @@ function update(req, res) {
   const postSlug = req.params.slug
   const post = posts.find(post => post.slug === postSlug)
   // handle message 404 if post not found
-  if(!post){
+  if (!post) {
     return res.status(404).json({
       error: "error 404",
-      message : "post not found"
+      message: "post not found"
     })
   }
 
@@ -67,12 +67,31 @@ function update(req, res) {
 
   // return edited post on postman
   res.json(post)
-
 }
+
 // modify
 function modify(req, res) {
+  // find post by slug
   const postSlug = req.params.slug
-  res.send(`modify post with slug:${postSlug}`)
+  const post = posts.find(post => post.slug === postSlug)
+  // handle message 404 if post not found
+  if (!post) {
+    return res.status(404).json({
+      error: "error 404",
+      message: "post not found"
+    })
+  }
+  // modify some key of the object
+  post.title = req.body.title
+  post.slug = req.body.slug
+  post.content = req.body.content
+
+  // check changes in array
+  console.log(posts);
+
+  // return modified post on postman
+  res.json(post)
+
 }
 // destroy
 function destroy(req, res) {
