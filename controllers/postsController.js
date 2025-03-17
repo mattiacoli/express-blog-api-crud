@@ -44,8 +44,30 @@ function store(req, res) {
 }
 // update
 function update(req, res) {
+  // find post by slug
   const postSlug = req.params.slug
-  res.send(`update entire post with slug:${postSlug}`)
+  const post = posts.find(post => post.slug === postSlug)
+  // handle message 404 if post not found
+  if(!post){
+    return res.status(404).json({
+      error: "error 404",
+      message : "post not found"
+    })
+  }
+
+  // edit all object key
+  post.title = req.body.title
+  post.slug = req.body.slug
+  post.content = req.body.content
+  post.image = req.body.image
+  post.tags = req.body.tags
+
+  // check edits in array
+  console.log(posts);
+
+  // return edited post on postman
+  res.json(post)
+
 }
 // modify
 function modify(req, res) {
