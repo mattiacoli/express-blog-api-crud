@@ -57,7 +57,7 @@ function update(req, res) {
 
   // edit all object key
   post.title = req.body.title
-  post.slug = req.body.slug
+  post.slug = req.body.title.replaceAll('', '-').toLowerCase()
   post.content = req.body.content
   post.image = req.body.image
   post.tags = req.body.tags
@@ -83,7 +83,7 @@ function modify(req, res) {
   }
   // modify some key of the object
   post.title = req.body.title
-  post.slug = req.body.slug
+  post.slug = req.body.title.replaceAll('', '-').toLowerCase()
   post.content = req.body.content
 
   // check changes in array
