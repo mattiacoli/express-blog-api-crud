@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const postsRouter = require('./routers/post_routers')
 const serverErrors = require('./middlewares/serverErrors')
+const notFound = require('./middlewares/notFound')
 
 // middleware for body-parser
 app.use(express.json())
@@ -26,4 +27,8 @@ app.get('/', (req, res)=>{
 
 // Server error middleware
 app.use(serverErrors)
+
+// 404 error middleware
+app.use(notFound)
+
 
