@@ -7,6 +7,9 @@ const postsRouter = require('./routers/post_routers')
 // middleware for body-parser
 app.use(express.json())
 
+// middleware for static assets
+app.use(express.static('public'))
+
 // post endpoint
 app.use('/posts', postsRouter)
 
