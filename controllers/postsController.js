@@ -57,7 +57,7 @@ function update(req, res) {
 
   // edit all object key
   post.title = req.body.title
-  post.id = req.body.title.replaceAll(' ', '-').toLowerCase()
+  post.slug = req.body.title.replaceAll(' ', '-').toLowerCase()
   post.content = req.body.content
   post.image = req.body.image
   post.tags = req.body.tags
