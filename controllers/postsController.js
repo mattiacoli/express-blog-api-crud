@@ -83,7 +83,7 @@ function modify(req, res) {
   }
   // modify some key of the object
   post.title = req.body.title
-  post.id = req.body.title.replaceAll(' ', '-').toLowerCase()
+  post.slug = req.body.title.replaceAll(' ', '-').toLowerCase()
   post.content = req.body.content
 
   // check changes in array
