@@ -13,8 +13,8 @@ function index(req, res) {
 }
 // show
 function show(req, res) {
-  const postSlug = req.params.slug
-  const post = posts.find(post => post.slug === postSlug)
+  const postId = req.params.id
+  const post = posts.find(post => post.id === postId)
   if (!post) {
     return res.status(404).json({
       error: "error 404",
@@ -45,8 +45,8 @@ function store(req, res) {
 // update
 function update(req, res) {
   // find post by slug
-  const postSlug = req.params.slug
-  const post = posts.find(post => post.slug === postSlug)
+  const postId = req.params.id
+  const post = posts.find(post => post.id === postId)
   // handle message 404 if post not found
   if (!post) {
     return res.status(404).json({
@@ -57,7 +57,7 @@ function update(req, res) {
 
   // edit all object key
   post.title = req.body.title
-  post.slug = req.body.title.replaceAll(' ', '-').toLowerCase()
+  post.id = req.body.title.replaceAll(' ', '-').toLowerCase()
   post.content = req.body.content
   post.image = req.body.image
   post.tags = req.body.tags
@@ -72,8 +72,8 @@ function update(req, res) {
 // modify
 function modify(req, res) {
   // find post by slug
-  const postSlug = req.params.slug
-  const post = posts.find(post => post.slug === postSlug)
+  const postId = req.params.id
+  const post = posts.find(post => post.id === postId)
   // handle message 404 if post not found
   if (!post) {
     return res.status(404).json({
@@ -83,7 +83,7 @@ function modify(req, res) {
   }
   // modify some key of the object
   post.title = req.body.title
-  post.slug = req.body.title.replaceAll(' ', '-').toLowerCase()
+  post.id = req.body.title.replaceAll(' ', '-').toLowerCase()
   post.content = req.body.content
 
   // check changes in array
@@ -96,8 +96,8 @@ function modify(req, res) {
 // destroy
 function destroy(req, res) {
 
-  const postSlug = req.params.slug
-  const post = posts.find(post => post.slug === postSlug)
+  const postId = req.params.id
+  const post = posts.find(post => post.id === postId)
 
   posts.splice(posts.indexOf(post), 1)
   console.log(posts);
